@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Pokemon Triva</title>
+</head>
+<body>
+	<div class="wrapper">
+
+		<!-- Title for the page letting user know function. -->
+		<div class="title">
+			<h1>Pokemon Trivia</h1>
+		</div>
+
+		<!-- Trivia game call to action. -->
+		<div class="subtitle">
+			<h3>Can you catch them all?</h3>
+		</div>
+
+		<!-- This are will hold the timing for the game it will count down live for the user. -->
+		<div class="time">
+			<p>Time Remaining: <span class="liveTime"></span></p>
+		</div>
+
+		<!-- this is the area that the form will appear on the page. -->
+		<div class="formArea">
+			<form>
+				<div class="qOne">
+					<p>What was ashes first Pokemon?</p>
+					<input type="radio" name="Pikachu" value="Pikachu">
+					<input type="radio" name="Bulbasaur" value="Bulbasaur">
+					<input type="radio" name="Charmander" value="Charmander">
+					<input type="radio" name="Squirtle" value="Squirtle">
+					<br>
+				</div>
+				
+				<div class="qTwo">
+					<p>How many Eeveelutions are there?</p>
+					<input type="radio" name="3" value="3">
+					<input type="radio" name="8" value="8">
+					<input type="radio" name="10" value="10">
+					<input type="radio" name="1" value="1">
+					<br>
+				</div>
+				
+				<input type="submit" value="submit">
+			</form>
+		</div>
+	</div>
+
+	<!-- Javascript area holds timer answer check and jquery link. -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		var qOneAnswer = "Pikachu";
+		var qTwoAnswer = "8";
+		var formLength = [1, 2];
+
+
+		function answerChecker (){
+			// for loop for length of formLength check from answer against answer variables using switch statement may be wrong idea re research before executing
+
+			// add too correct or incorrect answer counters
+		}
+
+
+		run if statment when form is completed or time is up if either condition is true run then run answerChecker (not sure how to check answer if time run out ask about runing on click for form elements that saves element value in variable and checks after game finish) display page with amount of correct and incorrect answers
+	</script>
+</body>
+</html>
