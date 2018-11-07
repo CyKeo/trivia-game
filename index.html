@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Pokemon Triva</title>
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<title>America Trivia</title>
 </head>
+
 <body>
+
+	<!-- Title for the page letting user know function. -->
+	<div class="title">
+		<h1>America Trivia</h1>
+	</div>
+
 	<div class="wrapper">
-
-		<!-- Title for the page letting user know function. -->
-		<div class="title">
-			<h1>Pokemon Trivia</h1>
-		</div>
-
 		<!-- Trivia game call to action. -->
 		<div class="subtitle">
-			<h3>Can you catch them all?</h3>
+			<h3>How well do you know America?</h3>
 		</div>
 
 		<!-- This are will hold the timing for the game it will count down live for the user. -->
@@ -26,26 +29,80 @@
 
 		<!-- this is the area that the form will appear on the page. -->
 		<div class="formArea">
-			<form>
+			<form action="#n">
 				<div class="qOne">
-					<p>What was ashes first Pokemon?</p>
-					<input type="radio" name="Pikachu" value="Pikachu">
-					<input type="radio" name="Bulbasaur" value="Bulbasaur">
-					<input type="radio" name="Charmander" value="Charmander">
-					<input type="radio" name="Squirtle" value="Squirtle">
+					<p>What year was the Declaration of Independence signed</p>
+					<input class="input" type="radio" name="question-1" value="1778"> 1778
+					<input class="input" type="radio" name="question-1" value="1770"> 1770
+					<input class="input" type="radio" name="question-1" value="1774"> 1774
+					<input class="input" type="radio" name="question-1" value="1776"> 1776
 					<br>
 				</div>
-				
+
 				<div class="qTwo">
-					<p>How many Eeveelutions are there?</p>
-					<input type="radio" name="3" value="3">
-					<input type="radio" name="8" value="8">
-					<input type="radio" name="10" value="10">
-					<input type="radio" name="1" value="1">
+					<p>How many hours is your work required to give you to vote?</p>
+					<input type="radio" name="question-2" value="1"> 1
+					<input type="radio" name="question-2" value="2"> 2
+					<input type="radio" name="question-2" value="3"> 3
+					<input type="radio" name="question-2" value="They're required to give you time off?"> They're required to give you time off?
+					<br>
+				</div>
+
+				<div class="qThree">
+					<p>On which hawaiian island is honolulu?</p>
+					<input type="radio" name="question-3" value="Oahu"> Oahu
+					<input type="radio" name="question-3" value="Maui"> Maui
+					<input type="radio" name="question-3" value="Kauai"> Kauai
+					<input type="radio" name="question-3" value="Molokai"> Molokai
+					<br>
+				</div>
+
+				<div class="qFour">
+					<p>The last state to be ratified to the United States was _____?</p>
+					<input type="radio" name="question-4" value="Alaska"> Alaska
+					<input type="radio" name="question-4" value="Texas"> Texas
+					<input type="radio" name="question-4" value="Hawaii"> Hawaii
+					<input type="radio" name="question-4" value="New Mexico"> New Mexico
+					<br>
+				</div>
+
+				<div class="qFive">
+					<p>The Statue of Liberty was a gift to the US from what country?</p>
+					<input type="radio" name="question-5" value="England"> England
+					<input type="radio" name="question-5" value="Canada"> Canada
+					<input type="radio" name="question-5" value="France"> France
+					<input type="radio" name="question-5" value="Spain"> Spain
+					<br>
+				</div>
+
+				<div class="qSix">
+					<p>What company sells more cars than Ford, Chrysler, Chevrolet, and Buick combined?</p>
+					<input type="radio" name="question-6" value="Toyota"> Toyota
+					<input type="radio" name="question-6" value="GMC"> GMC
+					<input type="radio" name="question-6" value="Honda"> Honda
+					<input type="radio" name="question-6" value="Matchbox Toys"> Matchbox Toys
+					<br>
+				</div>
+
+				<div class="qSeven">
+					<p>Which US state has the highest population?</p>
+					<input type="radio" name="question-7" value="California"> California
+					<input type="radio" name="question-7" value="Texas"> Texas
+					<input type="radio" name="question-7" value="Washington"> Washington
+					<input type="radio" name="question-7" value="New York"> New York
 					<br>
 				</div>
 				
-				<input type="submit" value="submit">
+				<div class="qEight">
+					<p>Which city has the highest population?</p>
+					<input type="radio" name="question-8" value="New York City"> New York City
+					<input type="radio" name="question-8" value="Honolulu"> Honolulu
+					<input type="radio" name="question-8" value="San Francisco"> San Francisco
+					<input type="radio" name="question-8" value="Los Angeles"> Los Angeles
+					<br>
+				</div>
+
+				<input id="submit" type="submit" value="submit">
 			</form>
 		</div>
 	</div>
@@ -53,19 +110,91 @@
 	<!-- Javascript area holds timer answer check and jquery link. -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
-		var qOneAnswer = "Pikachu";
-		var qTwoAnswer = "8";
-		var formLength = [1, 2];
+
+	// Point variables
+		var right = 0;
+		var wrong = 0;
+
+		var timeUp = false
+		// correct answer variable holder
+		var corAnswers = [
+			'1776',
+			'2',
+			'Oahu',
+			'Hawaii',
+			'France',
+			'Matchbox Toys',
+			'California',
+			'Los Angeles'
+		];
+
+		var playAns = [];
+
+		// page timer variable along with timer function
+		var timer = 60;
+		var interval = setInterval(function () {
+			$('.liveTime').html(timer)
+			timer--;
+			if (timer === 0) {
+				timeUp = true;
+				clearInterval(interval);
+				answerChecker();
+			}
+		}, 1000);
+
+		// form submit function
+		$('#submit').on('click', event => {
+			event.preventDefault();
+			answerChecker();
+			clearInterval(interval)
+		})
 
 
-		function answerChecker (){
+		// function that gets player answers
+		function getUserAnswers() {
+
+			for (let i = 1; i <= corAnswers.length; i++) {
+				var input = $("[name=" +'question-'+ i + "]:checked").val();
+				playAns.push(input);
+
+			};
+		};
+
+
+
+		// function that checks if player answers where right
+		function answerChecker() {
+			getUserAnswers();
 			// for loop for length of formLength check from answer against answer variables using switch statement may be wrong idea re research before executing
-
+			for (i = 0; i < playAns.length; i++) {
+				if (playAns[i] === corAnswers[i]) {
+					right++
+				} else {
+					wrong++
+				}
+			};
+			pageUpdate();
 			// add too correct or incorrect answer counters
 		}
 
+		function pageUpdate(){
 
-		// run if statment when form is completed or time is up if either condition is true run then run answerChecker (not sure how to check answer if time run out ask about runing on click for form elements that saves element value in variable and checks after game finish) display page with amount of correct and incorrect answers
+			// update page subheading
+			if (right >= 6){
+				$('.subtitle').html('<h2> All Done </h2> <p class="sub-title">You did great!</p>')
+			} else{
+				$('.subtitle').html('<h2> All Done </h2> <p class="sub-title"> Better luck next time</p>')
+			};
+			
+			if (timeUp === true){
+				$('.time').html('You ran out of time');
+			} else{
+				$('.time').html('Nice you got it all done')
+			};
+
+			$('.formArea').html("<p> You got " + right + " right! </p> <br> <p> You got " + wrong + " wrong!" )
+		}
 	</script>
 </body>
+
 </html>
